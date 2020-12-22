@@ -7,7 +7,7 @@ var generateBtn = document.querySelector("#generate");
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[j]];
+    [array[i], array[j]] = [array[j], array[i]];
   }
 }
 
@@ -44,17 +44,17 @@ function generatePassword() {
   }
 
 //Prompts to select criteria for password  
-  var lowercase = confirm("Do you want your password to contain lower case letters?")
-  var uppercase = confirm("Do you want your password to contian upper case letters?") 
-  var number = confirm("Do you want your password to contain numbers?")
-  var specialChar = confirm("Do you want your password to contain special characters?")
+  var lowercaseChar = confirm("Do you want your password to contain lower case letters?");
+  var uppercaseChar = confirm("Do you want your password to contian upper case letters?");
+  var numberChar = confirm("Do you want your password to contain numbers?");
+  var specialChar = confirm("Do you want your password to contain special characters?");
 
   //If user answers cancel to all options
   if (lowercaseChar === false && uppercaseChar === false && numberChar === false && specialChar === false) {
     alert("Password will not be generated. Please choose atleast one character option");
   }
-  function buildArr(prompt, arr) {
-    if (prompt === true) {
+  function buildArr(confirm, arr) {
+    if (confirm === true) {
       charOptions.push(...arr);
       while (charOptions.length < passwordLength) {
         charOptions.push(...arr);
@@ -62,14 +62,14 @@ function generatePassword() {
     }
   }
   //Builds array based on user input 
-  buildArr(lowercase, lowercaseChar);
-  buildArr(uppercase, uppercaseChar);
-  buildArr(number, numberChar);
-  buildArr(specialCharOption, specialChar);
+  buildArr(lowercaseChar);
+  buildArr(uppercaseChar);
+  buildArr(numberChar);
+  buildArr(specialChar);
 
   shuffleArray(charOptions);
-  var finalPassword = charOptions.slice(0, passwordLength); {
-  return finalPassword.join("");
+  var passwordText = charOptions.slice(0, passwordLength);
+  return passwordText = join("");
 
   }
-}
+
