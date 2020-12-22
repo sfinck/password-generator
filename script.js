@@ -1,13 +1,13 @@
+
 // Assignment Code
 // Generated a list of array for possible input values 
-var generateBtn = document.querySelector("#generate")
-generateBtn.addEventListener("click", writePassword);
+var generateBtn = document.querySelector("#generate");
 
 //Shuffle array function
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
-    var f = Math.floor(Math.random() * (i + 1));
-    [array[i], array[f]] = [array[f], array[i]];
+    var j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[j]];
   }
 }
 
@@ -20,8 +20,12 @@ function writePassword() {
 
 }
 
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
 //Created a function for the password generator 
 function generatePassword() {
+
 //Character input 
   var lowercaseChar = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
   var uppercaseChar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
