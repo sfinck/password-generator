@@ -1,12 +1,15 @@
 // Assignment Code
 // Generated a list of array for possible input values 
-var generateBtn = document.querySelector("#generate");
-var lowercaseChar = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var uppercaseChar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var numberChar = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-var specialChar = ["!, @, #, $, %, ^, &, *, (, ), -, +, ="];
-var charOptions = [];
+var generateBtn = document.querySelector("#generate")
+generateBtn.addEventListener("click", writePassword);
 
+//Shuffle array function
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    var f = Math.floor(Math.random() * (i + 1));
+    [array[i], array[f]] = [array[f], array[i]];
+  }
+}
 
 // Write password to the #password input
 function writePassword() {
@@ -19,6 +22,12 @@ function writePassword() {
 
 //Created a function for the password generator 
 function generatePassword() {
+//Character input 
+  var lowercaseChar = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  var uppercaseChar = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  var numberChar = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  var specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+", "="];
+  var charOptions = [];
 
 //Password much be more than 8 characters and less than 128 characters
    var passwordLength = prompt("How many characters do you want your password to be?")
@@ -31,28 +40,32 @@ function generatePassword() {
   }
 
 //Prompts to select criteria for password  
-  var lowercase = prompt("Do you want your password to contain lower case letters?")
+  var lowercase = confirm("Do you want your password to contain lower case letters?")
+  var uppercase = confirm("Do you want your password to contian upper case letters?") 
+  var number = confirm("Do you want your password to contain numbers?")
+  var specialChar = confirm("Do you want your password to contain special characters?")
 
-  var uppercase = prompt("Do you want your password to contian upper case letters?") 
-
-  var number = prompt("Do you want your password to contain numbers?")
-  
-  var specialChar = prompt("Do you want your password to contain special characters?")
-
-//Builds array based on user choices 
+  //If user answers cancel to all options
+  if (lowercaseChar === false && uppercaseChar === false && numberChar === false && specialChar === false) {
+    alert("Password will not be generated. Please choose atleast one character option");
+  }
   function buildArr(prompt, arr) {
     if (prompt === true) {
       charOptions.push(...arr);
-      while (charOptions.length < pwLength) {
+      while (charOptions.length < passwordLength) {
         charOptions.push(...arr);
       }
+    }
+  }
+  //Builds array based on user input 
+  buildArr(lowercase, lowercaseChar);
+  buildArr(uppercase, uppercaseChar);
+  buildArr(number, numberChar);
+  buildArr(specialCharOption, specialChar);
 
+  shuffleArray(charOptions);
+  var finalPassword = charOptions.slice(0, passwordLength); {
+  return finalPassword.join("");
 
-
-
-
-
+  }
 }
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
