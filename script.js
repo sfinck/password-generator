@@ -24,6 +24,7 @@ function generatePassword() {
   var numberChar = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
   var specialChar = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "+", "="];
   var getPassword = [""];
+  var password = "";
 
 //Password much be more than 8 characters and less than 128 characters
    var passwordLength = prompt("How many characters do you want your password to be?")
@@ -41,7 +42,7 @@ function generatePassword() {
   var number = confirm("Do you want your password to contain numbers?");
   var special = confirm("Do you want your password to contain special characters?"); 
 
-  //If user answers cancel to all options
+//If user answers cancel to all options
   if (lowercase === false && uppercase === false && number === false && special === false) {
     alert("Password will not be generated. Please choose atleast one character option");
   }
@@ -61,6 +62,15 @@ function generatePassword() {
   if (special === true) {
     getPassword = getPassword.concat(specialChar)
   };
-  
+
+//Created for loop to randomize user choices
+for (var i = 0; i < passwordLength; i++) {
+  var index = Math.floor(Math.random()*getPassword.length);
+  password += getPassword[index] + ""
+}
+
+console.log(password)
+return password 
+ 
 }
 
